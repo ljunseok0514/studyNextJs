@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import MovieInfo from "../../../../components/movie-info";
 import MovieVideos from "../../../../components/movie-videos";
+import styles from "../../../../styles/movies.module.css";
 
 export default async function MovieDetail({
   params: { id },
@@ -8,11 +9,19 @@ export default async function MovieDetail({
   params: { id: string };
 }) {
   return (
-    <div>
-      <Suspense fallback={<h1>Loading movie info</h1>}>
+    <div className={styles.container}>
+      <Suspense
+        fallback={
+          <h1 className={styles.movieInfoLoading}>Loading movie info</h1>
+        }
+      >
         <MovieInfo id={id} />
       </Suspense>
-      <Suspense fallback={<h1>Loading movie videos</h1>}>
+      <Suspense
+        fallback={
+          <h1 className={styles.movieVideosLoading}>Loading movie videos</h1>
+        }
+      >
         <MovieVideos id={id} />
       </Suspense>
     </div>

@@ -11,12 +11,18 @@ export default function Navigation() {
     <nav className={styles.nav}>
       <ul>
         <li>
-          <Link href="/">Home</Link> {path === "/" ? "🔥" : ""}
+          <Link href="/">
+            {path === "/" ? [<span>🔥</span>, "Home"] : "Home"}
+          </Link>
         </li>
         <li>
-          <Link href="/about-us">About Us</Link>
-          {path === "/about-us" ? "🔥" : ""}
+          <Link href="/about-us">
+            {path === "/about-us" ? [<span>🔥</span>, "About Us"] : "About Us"}
+          </Link>
         </li>
+        <li>TV</li>
+        <li>Flim</li>
+        <li>Sport</li>
       </ul>
     </nav>
   );

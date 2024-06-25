@@ -7,22 +7,28 @@ export const metadata = {
 };
 
 async function getMovies() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   return fetch(API_URL).then((response) => response.json());
 }
 
 export default async function HomePage() {
   const movies = await getMovies();
+  const firstMovie = movies[0];
   return (
     <div className={styles.container}>
-      {movies.map((movie) => (
-        <Movie
-          key={movie.id}
-          id={movie.id}
-          poster_path={movie.poster_path}
-          title={movie.title}
-        />
-      ))}
+      <h1 className={styles.title}>Top 20 Movies</h1>
+      <div className={styles.firstMovie}>
+        <img src={firstMovie.backdrop_path} alt="title" />
+      </div>
+      <div className={styles.movieListSection}>
+        {movies.slice(1).map((movie) => (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            poster_path={movie.poster_path}
+            title={movie.title}
+          />
+        ))}
+      </div>
     </div>
   );
 }
